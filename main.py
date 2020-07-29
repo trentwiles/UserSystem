@@ -4,9 +4,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return 'Visit /user/[username]'
 
-@app.route('/hello/<name>')
+@app.route('/user/<name>')
 def hello(name):
     return render_template('index.html', name=name)
 
