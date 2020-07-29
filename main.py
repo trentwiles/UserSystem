@@ -4,11 +4,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Hello world'
+    return render_template('index.html')
 
-@app.route('/RiversideRocks')
-def cakes():
-    return 'Look its Riverside Rocks!'
+@app.route('/hello/<name>')
+def hello(name):
+    return render_template('page.html', name=name)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
