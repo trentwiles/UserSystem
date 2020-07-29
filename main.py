@@ -3,7 +3,6 @@ from flaskext.mysql import MySQL
 import pymysql
 
 db = pymysql.connect("localhost", "root", "", "python")
-api = Api(app)
 
 
 app = Flask(__name__)
@@ -15,9 +14,10 @@ def index():
 
 @app.route('/user/<name>')
 def hello(name):
-    name=name
+    name = name
     cursor = db.cursor()
-    sql = "SELECT * FROM table WHERE Username=name"
+    sql = "SELECT * FROM users WHERE Username=%(name)"
+    {'name': name}
     cursor.execute(sql)
     results = cursor.fetchall()
     return render_template('index.html', results=results)
