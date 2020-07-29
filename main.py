@@ -16,11 +16,10 @@ def index():
 def hello(name):
     name = name
     cursor = db.cursor()
-    sql = "SELECT * FROM users WHERE Username=%(name)"
-    {'name': name}
+    sql = "SELECT * FROM users WHERE Username='Tucker'"
     cursor.execute(sql)
     results = cursor.fetchall()
-    return render_template('index.html', results=results)
+    return render_template('index.html', results=results, name=name)
 
 
 if __name__ == '__main__':
