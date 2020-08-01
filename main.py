@@ -18,11 +18,10 @@ def index():
 def hello(name):
     name = name
     cursor = db.cursor()
-    sql = "SELECT * FROM users WHERE Username='Tucker'"
-    cursor.execute(sql)
-    results = cursor.fetchall()
-    sql = json.loads(str(results))
-    user = sql[1]
+    query = "SELECT * FROM people WHERE name='%s'"
+    cursor.execute(query, [name])
+    # https://github.com/RiversideRocks/UserSystem/issues/1
+    user = cursor.fetchall()
     return render_template('index.html', user=user, name=name)
 
 
